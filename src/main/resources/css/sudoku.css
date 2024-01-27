@@ -1,0 +1,36 @@
+
+#gridpaneSudoku {
+    -fx-background-color: #f0f0f0;
+}
+
+
+#backgroundAnchorPane   {
+    -fx-background-color: #ffffff;
+}
+
+#buttonHbox {
+    
+
+}
+
+#sudokuAcnhorPane {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #d3d3d3;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-background-radius: 100;
+   
+}
+
+.button:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.text-field {
+    -fx-font-size: 20px;
+}
