@@ -1,0 +1,45 @@
+#gridpaneSudoku {
+    -fx-background-color: #333333; /* Dark grey background */
+}
+
+#backgroundAnchorPane {
+    -fx-background-color: #1e1e1e; /* Even darker grey background */
+}
+
+#buttonHbox {
+    /* You can add specific styles for this HBox if needed */
+}
+
+#sudokuAcnhorPane {
+    -fx-background-color: #333333; /* Dark grey to match gridpaneSudoku */
+    -fx-border-color: #555555; /* Slightly lighter grey for border */
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.button {
+    -fx-background-color: #555555; /* Dark grey buttons */
+    -fx-text-fill: #eeeeee; /* Light text for contrast */
+    -fx-background-radius: 100;
+}
+
+.button:hover {
+    -fx-background-color: #444444; /* Slightly lighter grey on hover */
+}
+
+.text-field {
+    -fx-font-size: 20px;
+    -fx-background-color: #333333; /* Dark background for text field */
+    -fx-text-fill: #eeeeee; /* Light text color */
+    -fx-border-color: #555555; /* Border to match button styles */
+}
+
+.choice-box {
+    -fx-background-color: #555555; /* Dark grey */
+    -fx-text-fill: #eeeeee; /* Light text for contrast */
+    -fx-background-radius: 100;
+}
+
+.choice-box:hover {
+    -fx-background-color: #444444; /* Slightly lighter grey on hover */
+}

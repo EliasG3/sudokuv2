@@ -82,14 +82,5 @@ public class sudoku {
         }
         return false;
     }
-
-    public void printBoard(GridPane gridpaneSudoku){
-        for(int i = BOARD_START_INDEX; i < BOARD_END_INDEX; i++){
-            for(int j = BOARD_START_INDEX; j < BOARD_END_INDEX; j++){
-                gridpaneSudoku.add(new javafx.scene.control.TextField(Integer.toString(this.board[i][j])), j, i);
-            }
-        }
-    }
-
     
 }

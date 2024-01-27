@@ -1,18 +1,26 @@
 package com.controllers;
 
+import java.io.IOException;
+
 import com.models.sudoku;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 public class mainViewController {
 
@@ -39,8 +47,15 @@ public class mainViewController {
     @FXML
     private Button buttonBack;
 
+    @FXML
+    private Button buttonSettings;
+
+    @FXML
+    private ChoiceBox<?> choiceboxSolutions;
+
     public void initialize() {
         populateGridPaneWithTextField();
+        
     }
 
     @FXML
@@ -55,6 +70,28 @@ public class mainViewController {
         gridpaneSudoku.getChildren().clear();
         populateGridPaneWithTextField();
         returnToInputedNumbers();
+    }
+
+    @FXML
+    void handleButtonSettingsAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SettingsView.fxml"));
+            Stage modalStage = new Stage();
+            Parent root = loader.load();
+            modalStage.setScene(new Scene(root));
+            root.getStylesheets().add(getClass().getResource("/css/sudoku.css").toExternalForm());
+            SettingsController controller = loader.getController();
+            controller.setMainViewController(this); 
+
+            modalStage.setTitle("Settings");
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            modalStage.initOwner(currentStage);
+            modalStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -83,6 +120,7 @@ public class mainViewController {
             alert("An error occurred: " + e.getMessage());
         }
     }
+
 
     private void readGridState(int[][] board) {
         for (int row = 0; row < 9; row++) {
@@ -181,12 +219,20 @@ public class mainViewController {
     private void setTextAreaColor(TextField textField, int row, int col) {
         String backgroundColor;
         if ((row / 3 + col / 3) % 2 == 0) {
-            backgroundColor = "#f0f0f0"; // Light Grey
+            backgroundColor = "ADD8E6"; // Determined by theme
         } else {
-            backgroundColor = "#ADD8E6"; // Pastel Blue
+            backgroundColor = "f0f0f0"; // Determined by theme
         }
         textField.setStyle("-fx-control-inner-background: " + backgroundColor + ";");
     }
+    
+   
+    
+    private boolean isLightTheme() {
+        return backgroundAnchorPane.getStylesheets().stream()
+            .anyMatch(style -> style.contains("/css/sudoku.css"));
+    }
+    
 
     public void alert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -202,4 +248,17 @@ public class mainViewController {
     public void setSudoku(sudoku sudoku) {
         this.sudoku = sudoku;
     }
+
+    public void setCSSFile(String theme){
+        if (theme.equals("Light")) {
+            backgroundAnchorPane.getStylesheets().clear();
+            backgroundAnchorPane.getStylesheets().add(getClass().getResource("/css/sudoku.css").toExternalForm());
+          
+        } else if (theme.equals("Dark")) {
+            backgroundAnchorPane.getStylesheets().clear();
+            backgroundAnchorPane.getStylesheets().add(getClass().getResource("/css/dark-theme.css").toExternalForm());
+           
+        } 
+    }
+
 }

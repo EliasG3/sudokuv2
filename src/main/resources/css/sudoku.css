@@ -34,3 +34,13 @@
 .text-field {
     -fx-font-size: 20px;
 }
+
+.choice-box {
+    -fx-background-color: #d3d3d3;
+    -fx-text-fill: #333333;
+    -fx-background-radius: 100;
+}
+
+.choice-box:hover {
+    -fx-background-color: #f0f0f0;
+}
